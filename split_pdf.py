@@ -13,7 +13,7 @@ inputPDF = glob.glob("*.pdf")
 # Open the PDF file
 pdf = fitz.open(inputPDF[0])
 
-# Term to key off of
+# Term to key off of. This will be the word(s) that the script looks for to determine which page is the first one in a set. The word needs to be unique to the first page in the set for it to work.
 searchTerm = "INVOICE"
 
 # Check the number of pages in the PDF
