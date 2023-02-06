@@ -35,19 +35,13 @@ numOfLoops = len(pageGroups)
 i = 0
 
 while (i < numOfLoops):
-  print(i)
-
-  if(i == 0):
-    startingPage = 0
-    endingPage = pageGroups[i]
-    print(startingPage, endingPage)
+  startingPage = pageGroups[i]
+  if ((i + 1) == numOfLoops):
+    endingPage = pageCount - 1
   else:
-    startingPage = pageGroups[i - 1] + 1
-    endingPage = pageGroups[i]
-    print(startingPage, endingPage)
-
+    nextIndexPage = i + 1
+    endingPage = pageGroups[nextIndexPage] - 1
   newPDF = pdf.convert_to_pdf(from_page=startingPage, to_page=endingPage, rotate=0)
   newPDF = fitz.open("pdf",newPDF)
   newPDF.save("output/" + filePrefix + "_" + str(i) + ".pdf")
-
   i+=1
