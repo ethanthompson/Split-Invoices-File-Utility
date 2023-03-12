@@ -2,7 +2,7 @@
 
 This script takes a compiled PDF of invoices and splits up the file based on a keyword that appears on the last page in each set. By default, the script looks for the term "Transport" and uses that as it's index on where to end each invoice.
 
-Each invoice file is renamed based on the sale ID, invoice ID, and account name. (If any of these attributes are not found in the invoice, they value is replaced with "NOTFOUND".)
+Each invoice file is renamed based on the sale ID, invoice ID, and account name.
 
 1. Install the latest version of Python for your operating system.
     1. For Windows (download the latest version [here](https://www.python.org/downloads/))
