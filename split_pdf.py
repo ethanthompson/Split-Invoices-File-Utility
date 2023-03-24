@@ -58,6 +58,9 @@ while (i < numOfLoops):
   saleNum = metadataPage.get_text("text",clip=fitz.Rect(125,321,150,521))[:-3] # Trim the string to get ride of the /X num at the end. Not sure what that digit even represents.
   accountName = metadataPage.get_text("text",clip=fitz.Rect(163,221,178,461))[:-1] # Trim the string to get ride of the newline character
   invoiceNum = metadataPage.get_text("text",clip=fitz.Rect(125,30,140,150))[:-1] # Trim the string to get ride of the newline character
+
+  # Account name clean up
+  accountName = accountName.replace("/","")
   
   # Drawing below left for debugging purposes. To make coordinates easier to identify, rotate the pdfs 90 degrees counter clock-wise first. For some reason the 0,0 origin is in the top right instead of the top left.
   # invoiceNumDraw = metadataPage.add_rect_annot(fitz.Rect(125,30,140,150))
