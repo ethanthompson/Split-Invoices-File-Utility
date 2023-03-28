@@ -54,16 +54,31 @@ while (i < numOfLoops):
   # This page is the one you want to scrape for the filename.
   metadataPage = pdf[startingPage]
 
+  # OLD Coordinates
+
   # Grab the "metadata" from the first page. Use the hack mentioned on line 62 to make finding data a bit easier.
-  saleNum = metadataPage.get_text("text",clip=fitz.Rect(125,321,150,521))[:-3] # Trim the string to get ride of the /X num at the end. Not sure what that digit even represents.
-  accountName = metadataPage.get_text("text",clip=fitz.Rect(163,221,178,461))[:-1] # Trim the string to get ride of the newline character
-  invoiceNum = metadataPage.get_text("text",clip=fitz.Rect(125,30,140,150))[:-1] # Trim the string to get ride of the newline character
+  # saleNum = metadataPage.get_text("text",clip=fitz.Rect(125,321,150,521))[:-3] # Trim the string to get ride of the /X num at the end. Not sure what that digit even represents.
+  # invoiceNum = metadataPage.get_text("text",clip=fitz.Rect(125,30,140,150))[:-1] # Trim the string to get ride of the newline character
+  # accountName = metadataPage.get_text("text",clip=fitz.Rect(163,221,178,461))[:-1] # Trim the string to get ride of the newline character
+
+  # NEW Coordinates
+
+  saleNum = metadataPage.get_text("text",clip=fitz.Rect(370,118,450,132))[:-3] # Trim the string to get ride of the /X num at the end. Not sure what that digit even represents.
+  invoiceNum = metadataPage.get_text("text",clip=fitz.Rect(650,118,750,132))[:-1] # Trim the string to get ride of the newline character
+  accountName = metadataPage.get_text("text",clip=fitz.Rect(365,150,620,165))[:-1] # Trim the string to get ride of the newline character
+
+  # Debugging stuff
+
+  # saleNum = "123"
+  # invoiceNum = "123"
+  # accountName = "Account_" + str(i)
+
+  # saleNumDraw = metadataPage.add_rect_annot(fitz.Rect(370,118,450,132))
+  # invoiceNumDraw = metadataPage.add_rect_annot(fitz.Rect(650,118,750,132))
+  # accountNumDraw = metadataPage.add_rect_annot(fitz.Rect(365,150,620,165))
 
   # Account name clean up
   accountName = accountName.replace("/","")
-  
-  # Drawing below left for debugging purposes. To make coordinates easier to identify, rotate the pdfs 90 degrees counter clock-wise first. For some reason the 0,0 origin is in the top right instead of the top left.
-  # invoiceNumDraw = metadataPage.add_rect_annot(fitz.Rect(125,30,140,150))
 
   newPDF = pdf.convert_to_pdf(from_page=startingPage, to_page=endingPage, rotate=0)
   newPDF = fitz.open("pdf",newPDF)
