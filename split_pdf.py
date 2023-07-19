@@ -78,7 +78,7 @@ while (i < numOfLoops):
   # accountNumDraw = metadataPage.add_rect_annot(fitz.Rect(365,150,620,165))
 
   # Account name clean up
-  accountName = accountName.replace("/","")
+  accountName = accountName.replace("/","").replace("*", "")
 
   newPDF = pdf.convert_to_pdf(from_page=startingPage, to_page=endingPage, rotate=0)
   newPDF = fitz.open("pdf",newPDF)
